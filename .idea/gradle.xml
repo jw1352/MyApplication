@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="E:\安装包\android-studio-ide-141.2343905-windows\android-studio\gradle\gradle-2.4" />
+        <option name="gradleJvm" value="1.7" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/RecylerViewDemo" />
+            <option value="$PROJECT_DIR$/SelfView" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/game" />
+            <option value="$PROJECT_DIR$/handler" />
+            <option value="$PROJECT_DIR$/imgaecache" />
+            <option value="$PROJECT_DIR$/ipc" />
+            <option value="$PROJECT_DIR$/ipcremote" />
+            <option value="$PROJECT_DIR$/myview" />
+            <option value="$PROJECT_DIR$/remoteview" />
+            <option value="$PROJECT_DIR$/scolltype" />
+            <option value="$PROJECT_DIR$/transAnimation" />
+            <option value="$PROJECT_DIR$/viewslideconflict" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

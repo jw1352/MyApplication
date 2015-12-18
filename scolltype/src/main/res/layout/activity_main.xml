@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--<com.example.jiangwei.scolltype.view.DragView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/darker_gray"
+        android:text="@string/hello_world" />
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/darker_gray"
+        android:text="@string/hello_world" />-->
+
+    <com.example.jiangwei.scolltype.view.SlideMenuView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="300px"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_dark">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="leftMenu" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="300px"
+            android:layout_height="match_parent"
+            android:background="@android:color/black">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="rightMenu" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Main" />
+        </FrameLayout>
+
+    </com.example.jiangwei.scolltype.view.SlideMenuView>
+</RelativeLayout>

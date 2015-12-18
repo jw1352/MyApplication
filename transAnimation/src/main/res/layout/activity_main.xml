@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jiangwei.transanimation.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="explode"
+        android:onClick="explode"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:elevation="5dp"
+        android:text="slide"
+        android:onClick="slide"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:text="fade"
+        android:onClick="fade"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:text="share"
+        android:onClick="share"
+        android:transitionName="share"
+        />
+
+    <Button
+        android:id="@+id/fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:transitionName="fab"
+        android:background="@android:drawable/ic_btn_speak_now"
+        android:elevation="5dp"
+        />
+
+</LinearLayout>
