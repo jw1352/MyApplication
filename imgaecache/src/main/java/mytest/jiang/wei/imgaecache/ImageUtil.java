@@ -102,7 +102,7 @@ public class ImageUtil {
         LruCache<String, Bitmap> imageCache = new LruCache<String, Bitmap>(caCheSize) {
             @Override
             protected int sizeOf(String key, Bitmap bitmap) { //返回bitmap的大小
-                return bitmap.getRowBytes() * bitmap.getHeight() / 1024;
+                return bitmap.getByteCount();
             }
         };
         return imageCache;
@@ -299,7 +299,6 @@ public class ImageUtil {
                     editor.abort();
                 }
             }
-            disLruCache.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

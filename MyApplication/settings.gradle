@@ -1,0 +1,1 @@
+include ':app', ':SelfView', ':scolltype', ':RecylerViewDemo', ':transAnimation', ':game', ':handler', ':ipc', ':remoteview', ':myview', ':imgaecache', ':ipcremote', ':viewslideconflict'

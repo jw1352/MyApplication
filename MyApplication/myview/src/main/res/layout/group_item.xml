@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#fafcfd"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/reserveDateLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="24dp"
+        android:background="@android:color/darker_gray">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="123"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/groupLayout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+</LinearLayout>

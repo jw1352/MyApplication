@@ -8,6 +8,10 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -17,11 +21,12 @@
             android:name="wei.jiang.selfview.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
-        </activity>
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" />
         <activity
             android:name="wei.jiang.selfview.MyListViewActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="wei.jiang.selfview.listview.DragListViewActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

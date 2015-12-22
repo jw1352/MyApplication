@@ -9,6 +9,7 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
+import java.io.IOException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
@@ -31,7 +32,7 @@ public class ImageLoader {
 
     private static final long DISK_CACHE_SIZE = 1024 * 1024 * 10; // 指定DiskLruCache缓存空间大小  10M的空间
     private static final String CACHE_DIR_NAME = "bitmap"; // 缓存文件夹名称
-    private static final int MEMORY_CACHE_SIZE = (int) (Runtime.getRuntime().maxMemory() / 1024) / 8; //指定LruCache缓存大小 内存的八分之一
+    private static final int MEMORY_CACHE_SIZE = (int) (Runtime.getRuntime().maxMemory()) / 8; //指定LruCache缓存大小 内存的八分之一
 
     /****************线程池相关参数********************/
     private static final int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors() + 1;
@@ -41,6 +42,7 @@ public class ImageLoader {
         private final AtomicInteger mCount = new AtomicInteger();
         @Override
         public Thread newThread(Runnable r) {
+            Log.d(TAG, "ImageLoader#" + mCount.getAndIncrement());
             return new Thread(r, "ImageLoader#" + mCount.getAndIncrement());
         }
     };
@@ -76,7 +78,7 @@ public class ImageLoader {
     }
 
     private void addBitmap2MemoryCache(String key, Bitmap bitmap) {
-        if (loadBitmMapFromMemoryCache(key) == null) {
+        if (loadBitmMapFromMemoryCache(key) == null &&  bitmap != null) {
             mMemoryCache.put(key, bitmap);
         }
     }
@@ -98,7 +100,9 @@ public class ImageLoader {
      * @return
      */
     private Bitmap loadBitmapFromDiskCache(String url, int reqWidth, int reqHeight) {
-        return ImageUtil.getFromDiskLruCache(url, mDiskCache, reqWidth, reqHeight);
+        Bitmap bitmap = ImageUtil.getFromDiskLruCache(url, mDiskCache, reqWidth, reqHeight);
+        addBitmap2MemoryCache(url, bitmap);
+        return bitmap;
     }
 
     /**
@@ -117,7 +121,16 @@ public class ImageLoader {
         }
         String key = ImageUtil.encode(url);
         ImageUtil.put2DisLruCache(url, mDiskCache);
+
         return loadBitmapFromDiskCache(url, reqWidth, reqHeight);
+    }
+
+    public void flushDiskCache() {
+        try {
+            mDiskCache.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -172,6 +185,7 @@ public class ImageLoader {
                 }
             }
         };
+        THREAD_POOL_EXECUTOR.execute(loadBitmapTask);
     }
 
     /**

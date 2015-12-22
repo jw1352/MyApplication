@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="color_2">#EEE4DA</item>
+    <item name="color_4">#ECE0C8</item>
+    <item name="color_8">#F2B179</item>
+    <item name="color_16">#F59563</item>
+    <item name="color_32">#F57C5F</item>
+    <item name="color_64">#F65D3B</item>
+    <item name="color_128">#EDCE71</item>
+    <item name="color_256">#EDCC61</item>
+    <item name="color_512">#ECC850</item>
+    <item name="color_1024">#EDC53F</item>
+    <item name="color_2048">#EEC22E</item>
+    <item name="panel_backgroud">#CCC0B2</item>
+    <item name="card_backgroud">#B8AF9E</item>
+</resources>
