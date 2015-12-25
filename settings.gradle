@@ -1,1 +1,2 @@
-include ':app', ':SelfView', ':scolltype', ':RecylerViewDemo', ':transAnimation', ':game', ':handler', ':ipc', ':remoteview', ':myview', ':imgaecache', ':ipcremote', ':viewslideconflict'
+include ':app', ':SelfView', ':scolltype', ':RecylerViewDemo', ':transAnimation', ':game', ':handler', ':ipc', ':remoteview', ':myview', ':imgaecache', ':ipcremote', ':viewslideconflict', ':fragmentdemo'
+include ':myDatetimeDialog'

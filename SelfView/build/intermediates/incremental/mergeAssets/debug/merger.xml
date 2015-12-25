@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\java\asproject\MyApplication\SelfView\assets"/></dataSet><dataSet config="debug"><source path="F:\java\asproject\MyApplication\SelfView\build-types\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Android\MyApplication\SelfView\assets"/></dataSet><dataSet config="debug"><source path="D:\Android\MyApplication\SelfView\build-types\debug\assets"/></dataSet></merger>

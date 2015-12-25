@@ -6,18 +6,20 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="D:\Program Files\Android\Android Studio\gradle\gradle-2.4" />
-        <option name="gradleJvm" value="1.7" />
+        <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/RecylerViewDemo" />
             <option value="$PROJECT_DIR$/SelfView" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/fragmentdemo" />
             <option value="$PROJECT_DIR$/game" />
             <option value="$PROJECT_DIR$/handler" />
             <option value="$PROJECT_DIR$/imgaecache" />
             <option value="$PROJECT_DIR$/ipc" />
             <option value="$PROJECT_DIR$/ipcremote" />
+            <option value="$PROJECT_DIR$/myDatetimeDialog" />
             <option value="$PROJECT_DIR$/myview" />
             <option value="$PROJECT_DIR$/remoteview" />
             <option value="$PROJECT_DIR$/scolltype" />

@@ -6,11 +6,13 @@
       <module fileurl="file://$PROJECT_DIR$/RecylerViewDemo/RecylerViewDemo.iml" filepath="$PROJECT_DIR$/RecylerViewDemo/RecylerViewDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/SelfView/SelfView.iml" filepath="$PROJECT_DIR$/SelfView/SelfView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fragmentdemo/fragmentdemo.iml" filepath="$PROJECT_DIR$/fragmentdemo/fragmentdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/game.iml" filepath="$PROJECT_DIR$/game/game.iml" />
       <module fileurl="file://$PROJECT_DIR$/handler/handler.iml" filepath="$PROJECT_DIR$/handler/handler.iml" />
       <module fileurl="file://$PROJECT_DIR$/imgaecache/imgaecache.iml" filepath="$PROJECT_DIR$/imgaecache/imgaecache.iml" />
       <module fileurl="file://$PROJECT_DIR$/ipc/ipc.iml" filepath="$PROJECT_DIR$/ipc/ipc.iml" />
       <module fileurl="file://$PROJECT_DIR$/ipcremote/ipcremote.iml" filepath="$PROJECT_DIR$/ipcremote/ipcremote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myDatetimeDialog/myDatetimeDialog.iml" filepath="$PROJECT_DIR$/myDatetimeDialog/myDatetimeDialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/myview/myview.iml" filepath="$PROJECT_DIR$/myview/myview.iml" />
       <module fileurl="file://$PROJECT_DIR$/remoteview/remoteview.iml" filepath="$PROJECT_DIR$/remoteview/remoteview.iml" />
       <module fileurl="file://$PROJECT_DIR$/scolltype/scolltype.iml" filepath="$PROJECT_DIR$/scolltype/scolltype.iml" />

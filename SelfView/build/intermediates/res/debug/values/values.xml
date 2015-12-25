@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/F:/java/asproject/MyApplication/SelfView/res/values/dimens.xml -->
+    <!-- From: file:/D:/Android/MyApplication/SelfView/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/F:/java/asproject/MyApplication/SelfView/res/values/strings.xml -->
+    <!-- From: file:/D:/Android/MyApplication/SelfView/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">SelfView</string>
     <string name="hello_world">Hello world!</string>
-    <!-- From: file:/F:/java/asproject/MyApplication/SelfView/res/values/styles.xml -->
+    <!-- From: file:/D:/Android/MyApplication/SelfView/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.DeviceDefault">
         <!--
