@@ -1,7 +1,8 @@
-package mytest.jiang.wei.imgaecache;
+package com.irex.utils.imagecache;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -9,7 +10,8 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
-import java.io.IOException;
+import com.irex.R;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
@@ -17,14 +19,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import libcore.io.DiskLruCache;
-
 /**
  * Created by wei.jiang on 2015/12/18.
  */
 public class ImageLoader {
     private static final String TAG = "ImageLoader";
-    private static final int TAG_KEY_URL = R.id.imageView;
+    private static final int TAG_KEY_URL = R.id.ivIcon;
     private static final int MESSAGE_POST_RESULT = 1;
     private Context mContext;
     private LruCache<String, Bitmap> mMemoryCache;
@@ -32,7 +32,7 @@ public class ImageLoader {
 
     private static final long DISK_CACHE_SIZE = 1024 * 1024 * 10; // 指定DiskLruCache缓存空间大小  10M的空间
     private static final String CACHE_DIR_NAME = "bitmap"; // 缓存文件夹名称
-    private static final int MEMORY_CACHE_SIZE = (int) (Runtime.getRuntime().maxMemory()) / 8; //指定LruCache缓存大小 内存的八分之一
+    private static final int MEMORY_CACHE_SIZE = (int) Runtime.getRuntime().maxMemory() / 8; //指定LruCache缓存大小 内存的八分之一
 
     /****************线程池相关参数********************/
     private static final int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors() + 1;
@@ -42,54 +42,66 @@ public class ImageLoader {
         private final AtomicInteger mCount = new AtomicInteger();
         @Override
         public Thread newThread(Runnable r) {
-            Log.d(TAG, "ImageLoader#" + mCount.getAndIncrement());
             return new Thread(r, "ImageLoader#" + mCount.getAndIncrement());
         }
     };
+
+    //private static ImageLoader imageLoader;
 
     // 创建线程池
     private static final Executor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE,
             TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), sThreadFactory);
 
-
+    // 实现运行在主线程的handler
     private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             LoadResult result = (LoadResult) msg.obj;
             ImageView imageView = result.imageView;
             String url = (String) imageView.getTag(TAG_KEY_URL);
-            if (url.equals(result.url)) {
+            if (url.equals(result.url)) { //解决加载出来后，ImageView已经滑过的问题
                 imageView.setImageBitmap(result.bitmap);
             } else {
                 Log.w(TAG, "set image bitmap ,but url has changed , ignored");
             }
         }
     };
+    private boolean isDiskCacheCreate = false;
 
 
     private ImageLoader(Context context) {
         mContext = context;
         mMemoryCache = ImageUtil.openLruCache(MEMORY_CACHE_SIZE);
         mDiskCache = ImageUtil.openDiskLruCache(mContext, DISK_CACHE_SIZE, CACHE_DIR_NAME);
+        isDiskCacheCreate = true;
     }
 
     public static ImageLoader build(Context context) {
+        /*if (imageLoader == null) {
+            imageLoader = new ImageLoader(context);
+        }*/
         return new ImageLoader(context);
     }
 
-    private void addBitmap2MemoryCache(String key, Bitmap bitmap) {
-        if (loadBitmMapFromMemoryCache(key) == null &&  bitmap != null) {
-            mMemoryCache.put(key, bitmap);
+
+    /**
+     * 把bitmap放入内存中
+     * @param url
+     * @param bitmap
+     */
+    private void addBitmap2MemoryCache(String url, Bitmap bitmap) {
+        if (loadBitmMapFromMemoryCache(url) == null) {
+            mMemoryCache.put(url, bitmap);
         }
     }
 
     /**
-     * 内存中加载
-     * @param key
+     * 从内存中加载
+     * @param url
      * @return
      */
-    private Bitmap loadBitmMapFromMemoryCache(String key) {
-        return mMemoryCache.get(key);
+    private Bitmap loadBitmMapFromMemoryCache(String url) {
+        return mMemoryCache.get(url);
     }
 
     /**
@@ -100,8 +112,10 @@ public class ImageLoader {
      * @return
      */
     private Bitmap loadBitmapFromDiskCache(String url, int reqWidth, int reqHeight) {
-        Bitmap bitmap = ImageUtil.getFromDiskLruCache(url, mDiskCache, reqWidth, reqHeight);
-        addBitmap2MemoryCache(url, bitmap);
+        Bitmap bitmap =  ImageUtil.getFromDiskLruCache(url, mDiskCache, reqWidth, reqHeight);
+        if (bitmap != null) { //放入到内存中
+            addBitmap2MemoryCache(url, bitmap);
+        }
         return bitmap;
     }
 
@@ -119,18 +133,8 @@ public class ImageLoader {
         if (mDiskCache == null) {
             return null;
         }
-        String key = ImageUtil.encode(url);
         ImageUtil.put2DisLruCache(url, mDiskCache);
-
         return loadBitmapFromDiskCache(url, reqWidth, reqHeight);
-    }
-
-    public void flushDiskCache() {
-        try {
-            mDiskCache.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -152,7 +156,7 @@ public class ImageLoader {
 
         bitmap = loadBitmapFromHttp(url, reqWidth, reqHeight);
         Log.d(TAG, "loadBitmapFromHttp, url:" + url);
-        if (bitmap != null) {
+        if (bitmap == null && !isDiskCacheCreate) {
             Log.d(TAG, "DiskLrucache is not created");
             bitmap = ImageUtil.downLoadImage(url);
         }
@@ -185,6 +189,7 @@ public class ImageLoader {
                 }
             }
         };
+
         THREAD_POOL_EXECUTOR.execute(loadBitmapTask);
     }
 
